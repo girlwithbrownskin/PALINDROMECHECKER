@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
 
@@ -9,10 +10,18 @@ public class Main {
         System.out.print("Enter a string: ");
         String word = sc.nextLine();
 
+        Stack<Character> stack = new Stack<>();
+
+        // Push characters into stack
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
+
         String reversed = "";
 
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed += word.charAt(i);
+        // Pop characters from stack
+        while (!stack.isEmpty()) {
+            reversed += stack.pop();
         }
 
         if (word.equals(reversed)) {
