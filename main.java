@@ -1,7 +1,14 @@
+import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
 
-        String word = "MADAM";
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String word = sc.nextLine();
+
         String reversed = "";
 
         for (int i = word.length() - 1; i >= 0; i--) {
@@ -13,5 +20,7 @@ public class Main {
         } else {
             System.out.println(word + " is NOT a Palindrome");
         }
+
+        sc.close();
     }
 }
