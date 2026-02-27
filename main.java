@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -10,21 +12,27 @@ public class Main {
         System.out.print("Enter a string: ");
         String word = sc.nextLine();
 
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        // Push characters into stack
+        // Enqueue and push characters
         for (int i = 0; i < word.length(); i++) {
-            stack.push(word.charAt(i));
+            char ch = word.charAt(i);
+            queue.add(ch);     // FIFO
+            stack.push(ch);    // LIFO
         }
 
-        String reversed = "";
+        boolean isPalindrome = true;
 
-        // Pop characters from stack
-        while (!stack.isEmpty()) {
-            reversed += stack.pop();
+        // Compare dequeue vs pop
+        while (!queue.isEmpty()) {
+            if (queue.remove() != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        if (word.equals(reversed)) {
+        if (isPalindrome) {
             System.out.println(word + " is a Palindrome");
         } else {
             System.out.println(word + " is NOT a Palindrome");
